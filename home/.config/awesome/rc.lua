@@ -86,9 +86,9 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite"
 local editor       = os.getenv("EDITOR") or "vim"
-local gui_editor   = "gvim"
+local gui_editor   = "termite -e vim"
 local browser      = "chromium"
-local guieditor    = "gvim"
+local guieditor    = "termite -e vim"
 local scrlocker    = "xscreensaver -lock"
 
 awful.util.terminal = terminal
