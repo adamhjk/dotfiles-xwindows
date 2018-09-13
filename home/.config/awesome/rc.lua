@@ -89,7 +89,7 @@ local editor       = os.getenv("EDITOR") or "vim"
 local gui_editor   = "termite -e vim"
 local browser      = "chromium"
 local guieditor    = "termite -e vim"
-local scrlocker    = "xscreensaver -lock"
+local scrlocker    = "xset s activate"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }

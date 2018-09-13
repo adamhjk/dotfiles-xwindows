@@ -8,7 +8,9 @@ xrandr --auto
 xrandr --dpi 192
 xmodmap ~/.Xmodmap
 
-xscreensaver -no-splash &
+# Set up the screensaver, using Google's much better xsecurelock
+xset s 300 5
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- env XSECURELOCK_SAVER=saver_xscreensaver xsecurelock &
 
 # Applications
 nm-applet &
