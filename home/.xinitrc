@@ -15,4 +15,4 @@ xss-lock -n /usr/lib/xsecurelock/dimmer -l -- env XSECURELOCK_SAVER=saver_xscree
 # Applications
 nm-applet &
 
-exec awesome
+exec i3
