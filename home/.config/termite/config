@@ -3,7 +3,7 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = Inconsolata-dz for Powerline 16
+font = JetBrains Mono 12
 #font = FontAwesome5Free
 #font = FontAwesome5Brands
 #fullscreen = true

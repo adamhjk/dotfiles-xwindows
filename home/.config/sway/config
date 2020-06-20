@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term termite
+set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec
@@ -238,7 +238,7 @@ set $gray #a89984
 set $darkgray #1d2021
 set $white #ffffff
 
-font pango:DejaVu Sans Mono, FontAwesome5Free, FontAwesome5Brands 16
+font pango:JetBrains Mono, FontAwesome5Free, FontAwesome5Brands 12
 
 #
 # Status Bar:
@@ -256,7 +256,7 @@ bar {
     #status_command i3blocks
 
     separator_symbol "  "
-    font pango:DejaVu Sans Mono, FontAwesome5Free, FontAwesome5Brands 16 
+    font pango:JetBrains Mono, FontAwesome5Free, FontAwesome5Brands 12 
 
     colors {
         background $bg
