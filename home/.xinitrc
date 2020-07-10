@@ -18,6 +18,6 @@ vmware-user-suid-wrapper &
 
 xsettingsd &
 
-feh --bg-scale ~/Pictures/beach.jpg &
+feh --bg-scale ~/Pictures/ocean.jpg &
 
 exec i3
