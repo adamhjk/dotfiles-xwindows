@@ -1,0 +1,14 @@
+general {
+  colors = false
+}
+
+order += "cpu_usage"
+order += "tztime local"
+
+cpu_usage {
+  format = " %usage"
+}
+
+tztime local {
+  format = " %Y-%m-%d %I:%M %p"
+}
