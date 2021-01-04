@@ -3,12 +3,48 @@ general {
 }
 
 order += "cpu_usage"
-order += "tztime local"
-
 cpu_usage {
-  format = " %usage"
+  format = " %usage"
 }
 
+order += "memory"
+memory {
+  format = " %used (%percentage_used)"
+  memory_used_method = "classical"
+}
+
+order += "wireless wlan0"
+wireless wlan0 {
+  format_up = "  %essid %quality %bitrate"
+  format_down = "睊"
+}
+order += "disk /"
+disk "/" {
+  format = " %free"
+}
+
+order += "volume master"
+volume master {
+  format = "墳 %volume"
+  format_muted = "婢 %volume" 
+}
+
+order += "battery 0"
+battery 0 {
+    format = "%status %percentage %remaining %emptytime"
+    integer_battery_capacity = true
+    last_full_capacity = true
+    format_down = "No battery"
+    status_chr = ""
+    status_bat = ""
+    status_unk = ""
+    status_full = ""
+    path = "/sys/class/power_supply/BAT%d/uevent"
+    low_threshold = 10
+}
+
+
+order += "tztime local"
 tztime local {
-  format = " %Y-%m-%d %I:%M %p"
+  format = " %Y-%m-%d %I:%M %p "
 }

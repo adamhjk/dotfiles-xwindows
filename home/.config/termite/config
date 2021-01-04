@@ -3,7 +3,7 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = JetBrains Mono 12
+font = JetBrains Mono 10
 #font = FontAwesome5Free
 #font = FontAwesome5Brands
 #fullscreen = true

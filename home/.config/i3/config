@@ -14,10 +14,10 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term konsole
+set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec
+#set $menu dmenu_path | dmenu | xargs swaymsg exec
 
 ### Output configuration
 #
@@ -92,6 +92,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec
     bindsym $mod+d exec termite -t launcher -e "bash -c 'compgen -c | sort -u | fzf | xargs -r i3-msg -t command exec'"
     for_window [title="launcher"] floating enable
 
+    bindsym $mod+Shift+n exec termite -t wifi -e "bash -c 'iwctl'"
+    for_window [title="wifi"] floating enable
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -103,7 +106,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec
     bindsym $mod+Shift+c reload
 
     # exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec i3-msg exit 
 #
 # Moving around:
 #
@@ -180,18 +183,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec
 
     # move focus to the parent container
     bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -217,6 +209,24 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+set $Locker i3lock -c 000000 && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+x mode "$mode_system"
+
 bindsym XF86MonBrightnessUp exec light -A 10 
 bindsym XF86MonBrightnessDown exec light -U 10 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
@@ -235,8 +245,9 @@ set $gray #a89984
 set $darkgray #1d2021
 set $white #ffffff
 
-font pango:JetBrains Mono, FontAwesome5Free, FontAwesome5Brands 10
+font pango:JetBrains Mono Nerd Font Mono 10 
 
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #
 # Status Bar:
 #
@@ -249,11 +260,11 @@ bar {
     # The default just shows the current date and time.
     # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
-    status_command i3status
+    status_command "i3status"
     #status_command i3blocks
 
-    separator_symbol "  "
-    font pango:DejaVu Sans Mono, FontAwesome5Free, FontAwesome5Brands 10
+    separator_symbol "  "
+    font pango:JetBrains Mono Nerd Font Mono 8 
 
     colors {
         background $bg
@@ -269,5 +280,3 @@ client.focused          $green $green $darkgray $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent $red $red $white $red $red
-
-# include /etc/sway/config.d/*
